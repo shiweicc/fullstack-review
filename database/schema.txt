@@ -1,0 +1,19 @@
+{
+  "title": "a repo",
+  "required": [
+     "id",
+     "name",
+     "owner",
+     "html_url",
+     "description",
+     "forks_count"
+  ],
+  "properties": {
+    "id": { "bsonType": "objectId" },
+    "name": { "bsonType": "string" },
+    "owner": { "bsonType": "string" },
+    "html_url": { "bsonType": "string" },
+    "description": { "bsonType": "string" },
+    "forks_count": { "bsonType": "number" }
+  }
+}
