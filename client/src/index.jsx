@@ -22,6 +22,7 @@ class App extends React.Component {
       data: term,
       success: (result) => {
         console.log('Ajax POST request success.', result);
+        alert('succes create data in DB!');
       },
       error: (error) => {
         console.log('Ajax POST request failed.');

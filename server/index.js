@@ -21,16 +21,12 @@ app.post('/repos', function (req, res) {
     return getReposByUsername.getReposByUsername(username)
     .then((data) => {
       console.log('succes get repos by username!');
-      // console.log('here', data.data);
 
       let repo = data.data;
-      save.save(repo)
-      // .then((result) => {
-      //   res.send('Repos saved to database');
-      // })
-      // .catch(result => {
-      //   res.status(400).send('Unable to save to database');
-      // })
+      save.save(repo);
+
+      console.log('success create data in DB!');
+      res.send();
     })
     .catch((err) => {
       console.log('fail get repos by username!');
