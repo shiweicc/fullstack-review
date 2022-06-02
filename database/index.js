@@ -3,7 +3,7 @@ mongoose.connect('mongodb://localhost/fetcher', {useNewUrlParser: true, useUnifi
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
-    "id": Number,
+    "id": { type: Number, unique:true },
     "name": String,
     "owner": String,
     "url": String,
