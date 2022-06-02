@@ -16,13 +16,6 @@ let getReposByUsername = (/* TODO */username) => {
   };
 
   return axios.get(options.url, { headers: options.headers })
-    // .then((res) => {
-    //   console.log('Success get repos!', res);
-    // })
-    // .catch((err) => {
-    //   console.log('Fail get repos!', err);
-    // })
-
 }
 
 module.exports.getReposByUsername = getReposByUsername;

@@ -1,8 +1,8 @@
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
-const save = require('../database/index.js');
+const db = require('../database/index.js');
 const getReposByUsername = require('../helpers/github.js');
-let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
@@ -22,11 +22,16 @@ app.post('/repos', function (req, res) {
     .then((data) => {
       console.log('succes get repos by username!');
 
-      let repo = data.data;
-      save.save(repo);
-
-      console.log('success create data in DB!');
-      res.send();
+      let repos = data.data;
+      db.save(repos, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.send();
+        } else {
+          console.log('success create data in DB!');
+          res.send();
+        }
+      });
     })
     .catch((err) => {
       console.log('fail get repos by username!');

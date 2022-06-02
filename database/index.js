@@ -12,11 +12,15 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (repoArr) => {
+let save = (repoArr, cb) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
+
   for (let i = 0; i < repoArr.length; i++) {
+    // create a variable called repoID
+    // search DB for the repoID
+
     const repo = new Repo ({
       id: repoArr[i].id,
       name: repoArr[i].name,
@@ -24,8 +28,14 @@ let save = (repoArr) => {
       url: repoArr[i].html_url,
       forks: repoArr[i].forks_count,
     });
-    // console.log('repo: ', repo);
-    repo.save();
+
+    repo.save((err, result) => {
+      if (err) {
+        cb(err);
+      } else {
+        cb(result);
+      }
+    });
   }
 }
 
