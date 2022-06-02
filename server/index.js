@@ -25,12 +25,12 @@ app.post('/repos', function (req, res) {
 
       let repo = data.data;
       save.save(repo)
-      .then((result) => {
-        res.send('Repos saved to database');
-      })
-      .catch(result => {
-        res.status(400).send('Unable to save to database');
-      })
+      // .then((result) => {
+      //   res.send('Repos saved to database');
+      // })
+      // .catch(result => {
+      //   res.status(400).send('Unable to save to database');
+      // })
     })
     .catch((err) => {
       console.log('fail get repos by username!');

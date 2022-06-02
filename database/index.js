@@ -24,8 +24,8 @@ let save = (repoArr) => {
       url: repoArr[i].html_url,
       forks: repoArr[i].forks_count,
     });
-    console.log('repo: ', repo);
-    await.repo.save();
+    // console.log('repo: ', repo);
+    repo.save();
   }
 
 
