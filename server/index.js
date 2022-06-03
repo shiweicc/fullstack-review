@@ -13,7 +13,6 @@ app.post('/repos', function (req, res) {
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
-
   let body = req.body;
   let username = Object.keys(body)[0];
 
@@ -28,13 +27,13 @@ app.post('/repos', function (req, res) {
           console.log(err);
           res.send();
         } else {
-          console.log('success create data in DB!');
+          console.log('success to create data in DB!');
           res.send();
         }
       });
     })
     .catch((err) => {
-      console.log('fail get repos by username!');
+      console.log('fail to get repos by username!');
       throw err;
     })
   }
@@ -43,7 +42,13 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  res.send('Hello world');
+  db.top25repo()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log('fail to get top 25 repos!');
+    })
 });
 
 let port = 1128;
