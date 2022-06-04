@@ -19,12 +19,13 @@ app.post('/repos', function (req, res) {
   if (username !== '') {
     return getReposByUsername.getReposByUsername(username)
     .then((data) => {
-      console.log('succes get repos by username!');
+      console.log('success get repos by username!');
 
       let repos = data.data;
+
       db.save(repos, (err, result) => {
         if (err) {
-          console.log(err);
+          console.log('fial to create data in DB!', err);
           res.send();
         } else {
           console.log('success to create data in DB!');
