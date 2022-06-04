@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,6 +11,21 @@ class App extends React.Component {
     this.state = {
       repos: []
     }
+  }
+
+  componentDidMount() {
+    this.displayRepos();
+  }
+
+  displayRepos () {
+    return axios.get('http://localhost:1128/repos')
+      .then(res => {
+        console.log('hey here is the top 25 repos!!!', res.data);
+        this.setState({ repos: res.data });
+      })
+      .catch(err => {
+        console.log('fail to display top 25 repos!');
+      })
   }
 
   search (term) {
@@ -34,7 +50,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
+      <RepoList repos={this.state.repos} displayRepos={this.displayRepos.bind(this)}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)
   }
