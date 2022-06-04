@@ -17,6 +17,13 @@ class App extends React.Component {
     this.displayRepos();
   }
 
+  handleClick = (e) => {
+    let clickedName = e.target.innerText;
+    let repoObj = this.state.repos.find(item => item.name === clickedName);
+    let url = repoObj.url;
+    window.open(url);
+  }
+
   displayRepos () {
     return axios.get('http://localhost:1128/repos')
       .then(res => {
@@ -50,7 +57,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos} displayRepos={this.displayRepos.bind(this)}/>
+      <RepoList repos={this.state.repos} displayRepos={this.displayRepos.bind(this)} onClick={this.handleClick.bind(this)}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)
   }

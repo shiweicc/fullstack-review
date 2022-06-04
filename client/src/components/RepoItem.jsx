@@ -3,7 +3,7 @@ import React from 'react';
 const RepoItem = (props) => (
 
   <div>{props.repos.map(item => {
-     return <li>{item.name}</li>
+     return <li onClick={(e) => props.onClick(e)}>{item.name}</li>
   })}</div>
 
 )
