@@ -25,7 +25,7 @@ app.post('/repos', function (req, res) {
 
       db.save(repos, (err, result) => {
         if (err) {
-          console.log('fial to create data in DB!', err);
+          console.log('fial to create data in DB!');
           res.send();
         } else {
           console.log('success to create data in DB!');
