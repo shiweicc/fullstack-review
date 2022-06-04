@@ -32,6 +32,7 @@ class App extends React.Component {
       },
       error: (error) => {
         console.log('Ajax POST request failed.');
+        alert('Error: Please submit a valid github username!');
         throw error;
       }
     })
